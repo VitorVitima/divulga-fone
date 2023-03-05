@@ -7,6 +7,7 @@ function Header(){
     categorias.map((e)=>{
         e.addEventListener('click', ()=>{
             Globais.cat = e.childNodes[0].innerHTML
+            Globais.par = 'all'
         })
     })
     function menuClick(e){
@@ -41,6 +42,8 @@ function Header(){
     function homeFun(){
         Globais.divulgar = false
         Globais.parceiros = true
+        Globais.par = 'all'
+        Globais.cat = 'todos'
         Globais.contato = false
     }
     function contatoFun(){

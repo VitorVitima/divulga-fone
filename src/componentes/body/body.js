@@ -6,7 +6,7 @@ import Contato from './contato';
 import './body.css'
 function Body(){
     const [Dados, setDados] = useState()
-    const [par, setPar] = useState('all')
+    const [par, setPar] = useState(Global.par)
     const [cat, setCat] = useState(Global.cat)
 
     const [divul, setDivul] = useState(Global.divulgar)
@@ -17,6 +17,8 @@ function Body(){
         setDivul(Global.divulgar)
         setParce(Global.parceiros)
         setCont(Global.contato)
+
+        setPar(Global.par)
     })
     useEffect(()=>{
         fetch('https://DivulgaFone.ai-se-fosse-o-p.repl.co')
@@ -35,8 +37,8 @@ function Body(){
                     <Parceiros
                         api={Dados}
                         par={par}
-                        setPar={setPar}
                         cat={cat}
+                        global={Global}
                     >
                     </Parceiros>
                 </div>

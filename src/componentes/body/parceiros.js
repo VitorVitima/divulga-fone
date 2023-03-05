@@ -39,7 +39,7 @@ function Parceiros(props){
         )
     }
     function clickImg(e){
-        props.setPar(e.nome)
+        props.global.par = e.nome
     }
     function all(e){
         return(

@@ -3,4 +3,6 @@ export default class Globais{
     static divulgar = false
     static parceiros = true
     static contato = false
+
+    static par = 'all'
 }
