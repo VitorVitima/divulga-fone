@@ -75,9 +75,7 @@ form > div > input[type='submit']{
     transition-duration: 0.3s;
 }
 form > div > input[type='submit']:hover{
-    background-color: #ffffff00;
-    padding: 6px 11px;
-    box-shadow: 0px 0px 10px #0000004d;
+    box-shadow: 0px 0px 10px #00000027;
     border-radius: 5px;
     transition-duration: 0.3s;
 }
