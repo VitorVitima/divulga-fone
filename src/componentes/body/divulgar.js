@@ -1,4 +1,3 @@
-import './divulgar.css'
 import { useState, useEffect } from 'react';
 function Divulgar(){
     const [keyApi, setKeyApi] = useState()
