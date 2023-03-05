@@ -1,0 +1,17 @@
+@import url('../paleta.css');
+main{
+    background-color: var(--white);
+    width: 100vw;
+    max-width: 1500px;
+    height: calc(100vh - 80px);
+    display: flex;
+}
+main > div#h1P{
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+}
+main > div#h1P > h1{
+    margin: 10px 0px 0px 15px;
+    text-align: left;
+}
