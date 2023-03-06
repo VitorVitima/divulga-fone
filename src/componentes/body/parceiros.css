@@ -15,6 +15,7 @@ section{
 section > div{
     width: 35%;
     min-width: 300px;
+    margin-bottom: 20px;
 }
 section > div > h2{
     width: 100%;

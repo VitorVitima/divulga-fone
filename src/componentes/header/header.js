@@ -69,6 +69,18 @@ function Header(){
                     <div className='categorias'>
                         <span>Mercado</span>
                     </div>
+                    <div className='categorias'>
+                        <span>Hotel</span>
+                    </div>
+                    <div className='categorias'>
+                        <span>Distribuidora</span>
+                    </div>
+                    <div className='categorias'>
+                        <span>Farmacia</span>
+                    </div>
+                    <div className='categorias'>
+                        <span>Construção</span>
+                    </div>
                 </div>
             </div>
             <a
