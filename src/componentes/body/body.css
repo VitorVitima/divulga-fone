@@ -1,8 +1,14 @@
 @import url('../paleta.css');
+body{
+    display: flex;
+    justify-content: center;
+    background-color: var(--white);
+}
 main{
     background-color: var(--white);
     width: 100vw;
-    max-width: 1500px;
+    max-width: 1400px;
+    align-items: center;
     height: calc(100vh - 80px);
     display: flex;
 }

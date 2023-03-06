@@ -5,6 +5,7 @@ main {
     align-items: center;
 }
 section#con{
+    margin: 0px;
     display: flex;
     justify-content: center;
 }
