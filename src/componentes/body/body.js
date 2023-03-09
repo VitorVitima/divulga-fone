@@ -3,6 +3,9 @@ import Global from '../globais'
 import Divulgar from './divulgar.js'
 import Parceiros from './parceiros';
 import Contato from './contato';
+
+
+
 import './body.css'
 function Body(){
     const [Dados, setDados] = useState()
@@ -49,6 +52,7 @@ function Body(){
             )
         }
     }
+    
     return(
         <main>
             {pdc()}

@@ -97,7 +97,7 @@ function Header(){
 
             <nav>
                 <span onClick={()=>homeFun()}>Home</span>
-                {/* <span onClick={()=>divulgarFun()}>Divulgar</span> */}
+                <span onClick={()=>divulgarFun()}>Divulgar</span>
                 <span onClick={()=>contatoFun()}>Contato</span>
                 <a target={'_blank'} href='https://www.google.com/maps/dir///@-23.4093624,-46.757523,15z'>Ver Rotas</a>
             </nav>
