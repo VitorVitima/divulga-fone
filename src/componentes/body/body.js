@@ -1,9 +1,9 @@
 import { useEffect, useState} from 'react';
+import axios from 'axios';
 import Global from '../globais'
 import Divulgar from './divulgar.js'
 import Parceiros from './parceiros';
 import Contato from './contato';
-
 
 
 import './body.css'
@@ -24,9 +24,10 @@ function Body(){
         setPar(Global.par)
     })
     useEffect(()=>{
-        fetch('https://DivulgaFone.ai-se-fosse-o-p.repl.co')
-        .then(api=>api.json())
-        .then(api=>setDados(api))
+        axios.get('http://localhost:3001/getSQL').then(response=>{
+            setDados(response.data)
+            console.log(Dados)
+        })
     })
     function pdc(){
         if(divul){

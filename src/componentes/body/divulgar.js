@@ -1,25 +1,29 @@
 import { useState, useEffect } from 'react';
+import axios from 'axios';
+import './divulgar.css'
 function Divulgar(){
     const [keyApi, setKeyApi] = useState()
     const [keyClient, setKeyClient] = useState()
     useEffect(()=>{
         fetch('https://chavesDF.ai-se-fosse-o-p.repl.co')
         .then((api)=>api.json())
-        .then((api)=>setKeyApi(api))
+        .then((api)=>{
+            setKeyApi(api)
+        })
     })
     function subButton(e){
-        e.target.addeventlistener('submit', ()=>{
-            const formData = new FormData(e)
-            const data = Object.fromEntries(formData)
-
-            fetch('https://DivulgaFone.ai-se-fosse-o-p.repl.co', {
-                method: 'POST',
-                headers: {
-                    'Content-Type':'application/json'
-                },
-                body: JSON.stringify(data)
-            }).then(res => res.json()).then(data=>console.log(data))
-        })
+        const inputs = [...document.querySelectorAll('input')]
+        const catte = document.querySelector('#categoriasEscolha')
+        axios.post('http://localhost:3001/register', {
+            //valores que serão mandados para o banco de dados
+            nome: inputs[0].value,
+            telefone: inputs[1].value,
+            endereco: inputs[2].value,
+            estado: inputs[3].value,
+            cep: inputs[4].value,
+            categoria: catte.value
+        }).then(response=>console.log(response))
+        console.log('mandou')
     }
     function enviarDados(tag){
         const key = document.querySelector('#keyInput')
@@ -27,13 +31,13 @@ function Divulgar(){
             if(e.chave == key.value){
                 subButton(tag)
             } else{
-                window.alert('Chave de Divulgação inválida...')
+                console.log('Chave de Divulgação inválida...')
             }
         })
     }
     return(
-        <section id='sForm' action="https://DivulgaFone.ai-se-fosse-o-p.repl.co">
-            <form autoComplete={'off'} id='form-api'>
+        <section id='sForm'>
+            <form autoComplete={'off'} id='form-api' method='post'>
                 <div id='nome'>
                    <label htmlFor='nomeEs' >Nome da empresa</label>
                    <input id='nomeEs' type={'text'} maxLength='20' minLength='1' required/>
@@ -78,8 +82,8 @@ function Divulgar(){
                     <label htmlFor='keyInput'>Chave de Divulgação</label>
                     <input id='keyInput' type={'text'}/>
                 </div>
-                <div id='button'>
-                    <input onClick={(e)=>enviarDados(e)} type={'submit'} value='Divulgar'/>
+                <div id='buttonTag'>
+                    <input id='buttonInput' onClick={(e)=>enviarDados(e)} type={'button'} value='Divulgar'/>
                 </div>
             </form>
         </section>

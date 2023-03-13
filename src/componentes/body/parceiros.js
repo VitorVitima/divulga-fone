@@ -7,7 +7,7 @@ function Parceiros(props){
                     <div className='selecionado'>
                         <h2>{props.par}</h2>
                         <div className='imgS'>
-                            <img src={e.imagem}></img>
+                            <img src={e.img}/>
                         </div>
                         <span>Endereço: {e.endereco}</span>
                         <span>Estado: {e.estado}</span>
@@ -30,7 +30,7 @@ function Parceiros(props){
             <>
                 <h2><span>{e.nome}</span></h2>
                 <div className='img'>
-                    <img onClick={()=>clickImg(e)} src={e.imagem}></img>
+                    <img onClick={()=>clickImg(e)} src={e.img}></img>
                 </div>
                 <span>
                     Endereço: {e.endereco}
