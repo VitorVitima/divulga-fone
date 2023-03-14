@@ -3,7 +3,6 @@ import axios from 'axios';
 import './divulgar.css'
 function Divulgar(){
     const [keyApi, setKeyApi] = useState()
-    const [keyClient, setKeyClient] = useState()
     useEffect(()=>{
         fetch('https://chavesDF.ai-se-fosse-o-p.repl.co')
         .then((api)=>api.json())
@@ -21,11 +20,18 @@ function Divulgar(){
             endereco: inputs[2].value,
             estado: inputs[3].value,
             cep: inputs[4].value,
-            categoria: catte.value
+            categoria: catte.value,
+            
+        }).then(response=>console.log(response))
+        axios.post('http://localhost:3001/upload', {
+            //valores que serão mandados para o banco de dados
+            img: inputs[5].file
         }).then(response=>console.log(response))
         console.log('mandou')
     }
     function enviarDados(tag){
+        const files = document.querySelector('#imgEs')
+        console.log(files.value)
         const key = document.querySelector('#keyInput')
         keyApi?.map((e)=>{
             if(e.chave == key.value){
@@ -35,9 +41,12 @@ function Divulgar(){
             }
         })
     }
+    function formFun(e){
+        e.preventDefault()
+    }
     return(
         <section id='sForm'>
-            <form autoComplete={'off'} id='form-api' method='post'>
+            <form onSubmit={(e)=>formFun(e)} autoComplete={'off'} id='form-api' method='post' encType='multipart/from-data'>
                 <div id='nome'>
                    <label htmlFor='nomeEs' >Nome da empresa</label>
                    <input id='nomeEs' type={'text'} maxLength='20' minLength='1' required/>
@@ -76,14 +85,14 @@ function Divulgar(){
                 </div>
                 <div id='imgDivulgar'>
                     <label htmlFor='imgEs'>Imagem da loja</label>
-                    <input id='imgEs' type={'file'} accept="image/png, image/jpeg" required/>
+                    <input id='imgEs' name='foto' type={'file'} accept="image/png, image/jpeg" required/>
                 </div>
                 <div id='key'>
                     <label htmlFor='keyInput'>Chave de Divulgação</label>
                     <input id='keyInput' type={'text'}/>
                 </div>
                 <div id='buttonTag'>
-                    <input id='buttonInput' onClick={(e)=>enviarDados(e)} type={'button'} value='Divulgar'/>
+                    <input id='buttonInput' onClick={(e)=>enviarDados(e)} type={'submit'} value='Divulgar'/>
                 </div>
             </form>
         </section>

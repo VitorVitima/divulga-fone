@@ -3,6 +3,9 @@ const app = express()
 const mysql = require('mysql2')
 const cors = require('cors')
 
+const multer = require('multer')
+const upload = multer({dest: 'imgs/'})
+
 const db = mysql.createPool({
     host: 'localhost',
     user: 'root',
@@ -20,10 +23,15 @@ app.post('/register', (req, res)=>{
     const {estado} = req.body
     const {categoria} = req.body
 
+
+
     let SQL = "insert into parceiros (nome,cep,telefone,endereco,estado,categoria,img) values (?, ?, ?, ?, ?, ?, './imgs/fb.jpg');"
     db.query(SQL, [nome, cep, telefone, endereco, estado, categoria] ,(ERRO, result)=>{
         console.log(ERRO)
     })
+})
+app.post('/upload', upload.single('foto'), (req, res)=>{
+    console.log(req.body, req.file)
 })
 app.get('/getSQL', (req, res)=>{
     let SQL = 'select * from parceiros;'
