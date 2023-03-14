@@ -1,10 +1,25 @@
-const express = require('express')
+import  express from 'express'
 const app = express()
-const mysql = require('mysql2')
-const cors = require('cors')
+import mysql from 'mysql2'
+import cors from 'cors'
 
-const multer = require('multer')
-const upload = multer({dest: 'imgs/'})
+import multer from 'multer'
+import path from 'path'
+
+const storage = multer.diskStorage({
+    destination: (req, file, callback)=>{
+        callback(null, path.resolve('uploads'))
+    },
+    filename: (req, file, callback)=>{
+        const time = new Date().getTime()
+
+        callback(null, `${time}_${file.originalname}`)
+    }
+})
+const upload = multer({storage: storage})
+app.post('/upload', upload.single('file'), (req, res)=>{
+    return res.json(req.file.filename)
+})
 
 const db = mysql.createPool({
     host: 'localhost',
@@ -29,9 +44,6 @@ app.post('/register', (req, res)=>{
     db.query(SQL, [nome, cep, telefone, endereco, estado, categoria] ,(ERRO, result)=>{
         console.log(ERRO)
     })
-})
-app.post('/upload', upload.single('foto'), (req, res)=>{
-    console.log(req.body, req.file)
 })
 app.get('/getSQL', (req, res)=>{
     let SQL = 'select * from parceiros;'

@@ -23,10 +23,7 @@ function Divulgar(){
             categoria: catte.value,
             
         }).then(response=>console.log(response))
-        axios.post('http://localhost:3001/upload', {
-            //valores que serão mandados para o banco de dados
-            img: inputs[5].file
-        }).then(response=>console.log(response))
+        
         console.log('mandou')
     }
     function enviarDados(tag){
@@ -46,7 +43,7 @@ function Divulgar(){
     }
     return(
         <section id='sForm'>
-            <form onSubmit={(e)=>formFun(e)} autoComplete={'off'} id='form-api' method='post' encType='multipart/from-data'>
+            <form onSubmit={(e)=>formFun(e)} action='http://localhost:3001/upload' autoComplete={'off'} id='form-api' method='post' enctype='multipart/form-data'>
                 <div id='nome'>
                    <label htmlFor='nomeEs' >Nome da empresa</label>
                    <input id='nomeEs' type={'text'} maxLength='20' minLength='1' required/>
@@ -85,7 +82,7 @@ function Divulgar(){
                 </div>
                 <div id='imgDivulgar'>
                     <label htmlFor='imgEs'>Imagem da loja</label>
-                    <input id='imgEs' name='foto' type={'file'} accept="image/png, image/jpeg" required/>
+                    <input id='imgEs' name='file' type={'file'} accept="image/png, image/jpeg" required/>
                 </div>
                 <div id='key'>
                     <label htmlFor='keyInput'>Chave de Divulgação</label>
