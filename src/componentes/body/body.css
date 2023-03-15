@@ -17,7 +17,58 @@ main > div#h1P{
     display: flex;
     flex-direction: column;
 }
+main > div#h1P:has(span[id='cep']) > div#pesquisa{
+    display: none;
+}
 main > div#h1P > h1{
     margin: 10px 0px 0px 15px;
     text-align: left;
+}
+
+main > div#h1P > div#pesquisa{
+    box-sizing: border-box;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+
+    padding: 0px 0px 20px 0px ;
+}
+main > div#h1P > div#pesquisa > label{
+    color: #00000052;
+    padding: 0px 10px 0px 0px;
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    transition-duration: 0.3s;
+    cursor: pointer;
+}
+main > div#h1P > div#pesquisa:has(input[type='text']:focus) > label{
+    color: black;
+    transition-duration: 0.3s;
+}
+main > div#h1P > div#pesquisa > label > div{
+    height: 14px;
+}
+main > div#h1P > div#pesquisa > input{
+    color: #00000052;
+    background-color: #ffffff00;
+    width: 200px;
+    outline: none;
+    
+    border: none;
+    border-top: 0px;
+    border-left: 0px;
+    border-right: 0px;
+
+    border-bottom-width: 2px;
+    border-color: #00000052;
+    border-style: solid;
+    border-radius: 2px;
+    transition-duration: 0.3s;
+}
+main > div#h1P > div#pesquisa > input:focus{
+    color: black;
+    border-color: black;
+    transition-duration: 0.3s;
 }

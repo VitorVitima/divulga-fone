@@ -21,14 +21,12 @@ function Divulgar(){
             estado: inputs[3].value,
             cep: inputs[4].value,
             categoria: catte.value,
-            
+            imgName: inputs[5].files[0].name      
         }).then(response=>console.log(response))
         
         console.log('mandou')
     }
     function enviarDados(tag){
-        const files = document.querySelector('#imgEs')
-        console.log(files.value)
         const key = document.querySelector('#keyInput')
         keyApi?.map((e)=>{
             if(e.chave == key.value){
@@ -38,12 +36,10 @@ function Divulgar(){
             }
         })
     }
-    function formFun(e){
-        e.preventDefault()
-    }
     return(
         <section id='sForm'>
-            <form onSubmit={(e)=>formFun(e)} action='http://localhost:3001/upload' autoComplete={'off'} id='form-api' method='post' enctype='multipart/form-data'>
+            <h1>Divulgar</h1>
+            <form  action='http://localhost:3001/register' autoComplete={'off'} id='form-api' method='post' enctype='multipart/form-data'>
                 <div id='nome'>
                    <label htmlFor='nomeEs' >Nome da empresa</label>
                    <input id='nomeEs' type={'text'} maxLength='20' minLength='1' required/>
@@ -82,7 +78,7 @@ function Divulgar(){
                 </div>
                 <div id='imgDivulgar'>
                     <label htmlFor='imgEs'>Imagem da loja</label>
-                    <input id='imgEs' name='file' type={'file'} accept="image/png, image/jpeg" required/>
+                    <input id='imgEs' name='file' type='file' accept="image/png, image/jpeg, image/jpg" required/>
                 </div>
                 <div id='key'>
                     <label htmlFor='keyInput'>Chave de Divulgação</label>

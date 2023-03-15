@@ -4,14 +4,14 @@ function Parceiros(props){
         function selecionado (){
             if(e.nome == props.par){
                 return(
-                    <div className='selecionado'>
+                    <div className='selecionado' key={e.id}>
                         <h2>{props.par}</h2>
                         <div className='imgS'>
-                            <img src={e.img}/>
+                            <img src={`./imgs/${e.img}`}/>
                         </div>
                         <span>Endereço: {e.endereco}</span>
                         <span>Estado: {e.estado}</span>
-                        <span>Cep: {e.cep}</span>
+                        <span id='cep'>Cep: {e.cep}</span>
                         <span>Telefone: {e.telefone}</span>
                     </div>
                     
@@ -30,7 +30,7 @@ function Parceiros(props){
             <>
                 <h2><span>{e.nome}</span></h2>
                 <div className='img'>
-                    <img onClick={()=>clickImg(e)} src={e.img}></img>
+                    <img onClick={()=>clickImg(e)} src={`./imgs/${e.img}`}></img>
                 </div>
                 <span>
                     Endereço: {e.endereco}
@@ -43,13 +43,29 @@ function Parceiros(props){
     }
     function all(e){
         return(
-            <div key={e.nome}>
+            <div key={e.id}>
                 {dadosBasicos(e)}
             </div>
         )
     }
+    function contemPesquisa(es, cat){
+        const num = es.indexOf(cat)
+        if(num >= 0)
+            return true
+        else
+            return false
+    }
+    function pesquisa(e){
+        if(contemPesquisa(e.categoria.toUpperCase(), props.cat.toUpperCase())){
+            return true
+        } else if(contemPesquisa(e.estado.toUpperCase(), props.cat.toUpperCase())){
+            return true
+        } else if(contemPesquisa(e.nome.toUpperCase(), props.cat.toUpperCase())){
+            return true
+        }
+    }
     function funCat(e){
-        if(e.categoria.toUpperCase() == props.cat.toUpperCase()){
+        if(pesquisa(e)){
             return(
                 <div key={e.nome}>
                     {dadosBasicos(e)}
@@ -67,7 +83,7 @@ function Parceiros(props){
         }
     })
     return(
-        <section>
+        <section id='par'>
             {retorno}
         </section>
     )

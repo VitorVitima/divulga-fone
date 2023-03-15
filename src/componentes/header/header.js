@@ -51,6 +51,9 @@ function Header(){
         Globais.parceiros = false
         Globais.contato = true
     }
+    function clickLogo(){
+        homeFun()
+    }
     return(
         <header>
             <div id='menu' className='close' onClick={(e)=>menuClick(e)}>
@@ -83,18 +86,13 @@ function Header(){
                     </div>
                 </div>
             </div>
-            <a
-                href='/'
-            >
-                <div id='logo'>
+                <div id='logo' onClick={()=>clickLogo()}>
                     <img
                         src='./logo/logoBranca/logo.png'
                     >
                     </img>
                     <span>ivulga Fone</span>
                 </div>
-            </a>
-
             <nav>
                 <span onClick={()=>homeFun()}>Home</span>
                 <span onClick={()=>divulgarFun()}>Divulgar</span>

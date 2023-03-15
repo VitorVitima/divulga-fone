@@ -1,25 +1,24 @@
-import  express from 'express'
+const express = require('express')
 const app = express()
-import mysql from 'mysql2'
-import cors from 'cors'
+const mysql = require('mysql2')
+const cors = require('cors')
 
-import multer from 'multer'
-import path from 'path'
+let data = new Date().getMinutes()
+let nameImg = data
+
+const multer = require('multer')
+const path = require('path')
 
 const storage = multer.diskStorage({
     destination: (req, file, callback)=>{
-        callback(null, path.resolve('uploads'))
+        callback(null, path.resolve('../public/imgs/'))
     },
-    filename: (req, file, callback)=>{
-        const time = new Date().getTime()
-
-        callback(null, `${time}_${file.originalname}`)
+    filename: async (req, file, callback)=>{
+        let nameImg2 = `${nameImg}${file.originalname}`
+        callback(null, nameImg2)
     }
 })
 const upload = multer({storage: storage})
-app.post('/upload', upload.single('file'), (req, res)=>{
-    return res.json(req.file.filename)
-})
 
 const db = mysql.createPool({
     host: 'localhost',
@@ -30,18 +29,17 @@ const db = mysql.createPool({
 
 app.use(cors())
 app.use(express.json())
-app.post('/register', (req, res)=>{
+app.post('/register', upload.single('file'), (req, res)=>{
     const {nome} = req.body
     const {cep} = req.body
     const {telefone} = req.body
     const {endereco} = req.body
     const {estado} = req.body
     const {categoria} = req.body
-
-
-
-    let SQL = "insert into parceiros (nome,cep,telefone,endereco,estado,categoria,img) values (?, ?, ?, ?, ?, ?, './imgs/fb.jpg');"
-    db.query(SQL, [nome, cep, telefone, endereco, estado, categoria] ,(ERRO, result)=>{
+    const {imgName} = req.body
+    let nameImg2 = `${nameImg}${imgName}`
+    let SQL = "insert into parceiros (nome,cep,telefone,endereco,estado,categoria, img) values (?, ?, ?, ?, ?, ?, ?);"
+    db.query(SQL, [nome, cep, telefone, endereco, estado, categoria, nameImg2] ,(ERRO, result)=>{
         console.log(ERRO)
     })
 })
