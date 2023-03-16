@@ -21,10 +21,10 @@ const storage = multer.diskStorage({
 const upload = multer({storage: storage})
 
 const db = mysql.createPool({
-    host: 'localhost',
+    host: 'containers-us-west-175.railway.app',
     user: 'root',
-    password: 'VitorVitima159_',
-    database: 'dados'
+    password: '382drNFtLvZF18SgiZIJ',
+    database: 'railway'
 })
 
 app.use(cors())

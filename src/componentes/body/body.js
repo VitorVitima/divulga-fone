@@ -24,7 +24,7 @@ function Body(){
         setPar(Global.par)
     })
     useEffect(()=>{
-        axios.get('http://localhost:3001/getSQL').then(response=>{
+        axios.get('https://root:382drNFtLvZF18SgiZIJ@containers-us-west-175.railway.app:6341/railway/getSQL').then(response=>{
             setDados(response.data)
         })
     })
