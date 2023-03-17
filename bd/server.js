@@ -1,35 +1,35 @@
-const express = require('express')
+import express from 'express'
 const app = express()
-const mysql = require('mysql2')
-const cors = require('cors')
+import mysql from 'mysql2'
+import cors from 'cors'
 
-let data = new Date().getMinutes()
-let nameImg = data
+import multer from 'multer'
+import path from 'path'
 
-const multer = require('multer')
-const path = require('path')
+let data = new Date().getTime()
+
+const url = 'mongodb+srv://dados:ZeOWIzee7yBJOEp9@cluster0.f1egadi.mongodb.net/?retryWrites=true&w=majority'
+import mongoose from 'mongoose'
+
+mongoose.connect(url).then(()=>console.log('Mongoose conectou'))
+.catch(()=>console.log('Mongoose não conectou'))
+
+import User from './user.js'
 
 const storage = multer.diskStorage({
     destination: (req, file, callback)=>{
         callback(null, path.resolve('../public/imgs/'))
     },
     filename: async (req, file, callback)=>{
-        let nameImg2 = `${nameImg}${file.originalname}`
+        let nameImg2 = `${data}_${file.originalname}`
         callback(null, nameImg2)
     }
 })
 const upload = multer({storage: storage})
 
-const db = mysql.createPool({
-    host: 'containers-us-west-175.railway.app',
-    user: 'root',
-    password: '382drNFtLvZF18SgiZIJ',
-    database: 'railway'
-})
-
 app.use(cors())
 app.use(express.json())
-app.post('/register', upload.single('file'), (req, res)=>{
+app.post('/register', upload.single('file'), async (req, res)=>{
     const {nome} = req.body
     const {cep} = req.body
     const {telefone} = req.body
@@ -37,23 +37,30 @@ app.post('/register', upload.single('file'), (req, res)=>{
     const {estado} = req.body
     const {categoria} = req.body
     const {imgName} = req.body
-    let nameImg2 = `${nameImg}${imgName}`
-    let SQL = "insert into parceiros (nome,cep,telefone,endereco,estado,categoria, img) values (?, ?, ?, ?, ?, ?, ?);"
-    db.query(SQL, [nome, cep, telefone, endereco, estado, categoria, nameImg2] ,(ERRO, result)=>{
-        console.log(ERRO)
-    })
+    //let nameImg2 = `${nameImg}${imgName}`
+    //let SQL = "insert into parceiros (nome,cep,telefone,endereco,estado,categoria, img) values (?, ?, ?, ?, ?, ?, ?);"
+    //db.query(SQL, [nome, cep, telefone, endereco, estado, categoria, nameImg2] ,(ERRO, result)=>{
+    //    console.log(ERRO)
+    //})
+
+    const img2 =`${data}_${imgName}`
+    const obj = {
+        nome:nome,
+        cep: cep,
+        telefone: telefone,
+        endereco: endereco,
+        estado: estado,
+        categoria: categoria,
+        img: img2
+    }
+
+
+    const newUser = User.create(obj)
+    return res.json(newUser)
 })
-app.get('/getSQL', (req, res)=>{
-    let SQL = 'select * from parceiros;'
-
-    db.query(SQL, (erro, result)=>{
-        if(erro){
-            console.log(erro)
-        } else {
-            res.send(result)
-        }
-    })
-
+app.get('/getSQL', async (req, res)=>{
+    const parceiros = await User.find()
+    return res.json(parceiros)
 })
 
 const serverFun = () =>{
