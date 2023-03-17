@@ -11,5 +11,10 @@
             "src":"(./bd)",
             "dest": "./bd/server.js"
         }
+    ],
+    "rewrites": [
+        {
+             "source": "/(.*)", "destination": "/" 
+        }
     ]
 }
