@@ -2,19 +2,19 @@
     "version": 2,
     "builds": [
         {
-            "src":"./bd/server.js",
+            "src":"./server.js",
             "use":"@vercel/node"
         }
     ],
     "routes":[
         {
-            "src":"(./bd)",
-            "dest": "./bd/server.js"
+            "src":"(.*)",
+            "dest": "./server.js"
         }
     ],
     "rewrites": [
         {
-             "source": "/(./bd)", "destination": "/" 
+             "source": "/(.*)", "destination": "/" 
         }
     ]
 }
