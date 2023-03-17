@@ -1,6 +1,5 @@
-import express from 'express'
-const app = express()
-import mysql from 'mysql2'
+import  Express from 'express'
+const app = Express()
 import cors from 'cors'
 
 import multer from 'multer'
@@ -28,7 +27,7 @@ const storage = multer.diskStorage({
 const upload = multer({storage: storage})
 
 app.use(cors())
-app.use(express.json())
+app.use(Express.json())
 app.post('/register', upload.single('file'), async (req, res)=>{
     const {nome} = req.body
     const {cep} = req.body
