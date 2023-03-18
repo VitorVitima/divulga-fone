@@ -73,18 +73,28 @@ function Parceiros(props){
             )
         }
     }
-    const retorno = JSON.parse(props.api).map((e)=>{
-        if(props.par == 'all' &&  props.cat.toUpperCase() == 'TODOS'){
-            return all(e)
-        } else if(props.par != 'all'){
-            return parSelecionado(e)
-        } else {
-            return funCat(e)
+    const retorno = () => {
+        for(let v1 = 0; v1 < props.api;v1++){
+            if(props.par == 'all' &&  props.cat.toUpperCase() == 'TODOS'){
+                return all(props.api[v1])
+            } else if(props.par != 'all'){
+                return parSelecionado(props.api[v1])
+            } else {
+                return funCat(props.api[v1])
+            }
         }
-    })
+        //props.api.map((e)=>{
+        //    if(props.par == 'all' &&  props.cat.toUpperCase() == 'TODOS'){
+        //        return all(e)
+        //    } else if(props.par != 'all'){
+        //        return parSelecionado(e)
+        //    } else {
+        //        return funCat(e)
+        //    }
+    }
     return(
         <section id='par'>
-            {retorno}
+            {retorno()}
         </section>
     )
 }
