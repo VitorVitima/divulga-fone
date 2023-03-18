@@ -1,6 +1,6 @@
 import './parceiros.css'
 function Parceiros(props){
-    const urlServer = `divulga-back-dcbzuzcjn-vitorvitima.vercel.app/file/`
+    const urlServer = `https://divulga-fone-9rtuoo381-vitorvitima.vercel.app/file/`
     function parSelecionado(e){
         function selecionado (){
             if(e.nome == props.par){
