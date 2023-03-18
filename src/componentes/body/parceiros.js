@@ -73,7 +73,7 @@ function Parceiros(props){
             )
         }
     }
-    const retorno = props.api ?.map((e)=>{
+    const retorno = props.api?.map((e)=>{
         if(props.par == 'all' &&  props.cat.toUpperCase() == 'TODOS'){
             return all(e)
         } else if(props.par != 'all'){
