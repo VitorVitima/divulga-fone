@@ -2,6 +2,7 @@ import { useState } from 'react'
 import Globais from '../globais'
 import './header.css'
 function Header(){
+    const [atu, setAtu] = useState(false)
     const [getCat, setCat] = useState(false)
     const categorias = [...document.querySelectorAll('.categorias')]
     categorias.map((e)=>{
@@ -34,19 +35,21 @@ function Header(){
             menu.className = 'close'
         }
     }
-    function divulgarFun(){
+    function divulgarFun(e){
+        setAtu(e.target.innerHTML)
         Globais.divulgar = true
         Globais.parceiros = false
         Globais.contato = false
     }
-    function homeFun(){
+    function homeFun(e){
         Globais.divulgar = false
         Globais.parceiros = true
         Globais.par = 'all'
         Globais.cat = 'todos'
         Globais.contato = false
     }
-    function contatoFun(){
+    function contatoFun(e){
+        setAtu(e.target.innerHTML)
         Globais.divulgar = false
         Globais.parceiros = false
         Globais.contato = true
@@ -94,9 +97,10 @@ function Header(){
                     <span>ivulga Fone</span>
                 </div>
             <nav>
-                <span onClick={()=>homeFun()}>Home</span>
-                <span onClick={()=>divulgarFun()}>Divulgar</span>
-                <span onClick={()=>contatoFun()}>Contato</span>
+
+                <div onClick={()=>homeFun()}><span>Home</span></div>
+                <div onClick={(e)=>divulgarFun(e)}><span>Divulgar</span></div>
+                <div onClick={(e)=>contatoFun(e)}><span>Contato</span></div>
                 <a target={'_blank'} href='https://www.google.com/maps/dir///@-23.4093624,-46.757523,15z'>Ver Rotas</a>
             </nav>
         </header>

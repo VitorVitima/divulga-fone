@@ -24,7 +24,7 @@ function Body(){
         setPar(Global.par)
     })
     useEffect(()=>{
-        axios.get('https://divulga-fone-9rtuoo381-vitorvitima.vercel.app/getSQL').then(response=>{
+        axios.get('https://divulga-back-5760v91e7-vitorvitima.vercel.app/getSQL').then(response=>{
             setDados(response.data)
         })
     })
