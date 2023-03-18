@@ -13,7 +13,7 @@ function Divulgar(){
     function subButton(e){
         const inputs = [...document.querySelectorAll('input')]
         const catte = document.querySelector('#categoriasEscolha')
-        axios.post('https://divulga-back-15vfzxsrv-vitorvitima.vercel.app/register', {
+        axios.post('https://divulga-back.vercel.app/register', {
             //valores que serão mandados para o banco de dados
             nome: inputs[0].value,
             telefone: inputs[1].value,
@@ -21,7 +21,7 @@ function Divulgar(){
             estado: inputs[3].value,
             cep: inputs[4].value,
             categoria: catte.value,
-            imgName: inputs[5]      
+            imgName: inputs[5].files[0].name    
         }).then(response=>console.log(response))
         
         console.log('mandou')
@@ -39,7 +39,7 @@ function Divulgar(){
     return(
         <section id='sForm'>
             <h1>Divulgar</h1>
-            <form  action='https://divulga-back-15vfzxsrv-vitorvitima.vercel.app/register' autoComplete={'off'} id='form-api' method='post' enctype='multipart/form-data'>
+            <form  action='https://divulga-back.vercel.app/register' autoComplete={'off'} id='form-api' method='post' enctype='multipart/form-data'>
                 <div id='nome'>
                    <label htmlFor='nomeEs' >Nome da empresa</label>
                    <input id='nomeEs' type={'text'} maxLength='20' minLength='1' required/>
