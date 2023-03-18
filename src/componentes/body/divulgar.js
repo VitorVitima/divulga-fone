@@ -3,6 +3,7 @@ import axios from 'axios';
 import './divulgar.css'
 function Divulgar(){
     const [keyApi, setKeyApi] = useState()
+    const {img, setImg} = useState()
     useEffect(()=>{
         fetch('https://chavesDF.ai-se-fosse-o-p.repl.co')
         .then((api)=>api.json())
@@ -78,7 +79,7 @@ function Divulgar(){
                 </div>
                 <div id='imgDivulgar'>
                     <label htmlFor='imgEs'>Imagem da loja</label>
-                    <input id='imgEs' name='file' type='file' accept="image/png, image/jpeg, image/jpg" required/>
+                    <input onChange={(e)=>setImg(e.target.files[0])} id='imgEs' name='file' type='file' accept="image/png, image/jpeg, image/jpg" required/>
                 </div>
                 <div id='key'>
                     <label htmlFor='keyInput'>Chave de Divulgação</label>
