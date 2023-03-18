@@ -24,7 +24,7 @@ function Body(){
         setPar(Global.par)
     })
     useEffect(()=>{
-        axios.get('https://divulga-back.vercel.app/getSQL').then(response=>{
+        axios.get('http://localhost:3001/getSQL').then(response=>{
             setDados(response.data)
         })
     })

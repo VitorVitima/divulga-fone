@@ -1,5 +1,6 @@
 import './parceiros.css'
 function Parceiros(props){
+    const urlServer = `http://localhost:3001/file/`
     function parSelecionado(e){
         function selecionado (){
             if(e.nome == props.par){
@@ -7,14 +8,13 @@ function Parceiros(props){
                     <div className='selecionado' key={e.id}>
                         <h2>{props.par}</h2>
                         <div className='imgS'>
-                            <img src={`./imgs/${e.img}`}/>
+                            <img src={`${urlServer}${e.img}`}/>
                         </div>
                         <span>Endereço: {e.endereco}</span>
                         <span>Estado: {e.estado}</span>
                         <span id='cep'>Cep: {e.cep}</span>
                         <span>Telefone: {e.telefone}</span>
                     </div>
-                    
                 )
             }
         }
@@ -30,7 +30,7 @@ function Parceiros(props){
             <>
                 <h2><span>{e.nome}</span></h2>
                 <div className='img'>
-                    <img onClick={()=>clickImg(e)} src={`./imgs/${e.img}`}></img>
+                    <img onClick={()=>clickImg(e)} src={`${urlServer}${e.img}`}></img>
                 </div>
                 <span>
                     Endereço: {e.endereco}
