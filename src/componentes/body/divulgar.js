@@ -21,7 +21,7 @@ function Divulgar(){
             estado: inputs[3].value,
             cep: inputs[4].value,
             categoria: catte.value,
-            imgName: inputs[5].files[0].name      
+            imgName: inputs[5]      
         }).then(response=>console.log(response))
         
         console.log('mandou')
