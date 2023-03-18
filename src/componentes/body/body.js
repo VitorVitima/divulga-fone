@@ -8,7 +8,7 @@ import Contato from './contato';
 
 import './body.css'
 function Body(){
-    const [Dados, setDados] = useState()
+    const [Dados, setDados] = useState([])
     const [par, setPar] = useState(Global.par)
     const [cat, setCat] = useState(Global.cat)
 
