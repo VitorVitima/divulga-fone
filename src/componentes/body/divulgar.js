@@ -3,7 +3,7 @@ import axios from 'axios';
 import './divulgar.css'
 function Divulgar(){
     const [keyApi, setKeyApi] = useState()
-    const {img, setImg} = useState()
+    const [img, setImg] = useState()
     useEffect(()=>{
         fetch('https://chavesDF.ai-se-fosse-o-p.repl.co')
         .then((api)=>api.json())
@@ -37,10 +37,16 @@ function Divulgar(){
             }
         })
     }
+    function subFun(e){
+        const file = img
+        const formData = new FormData();    
+        formData.append('anexo', file);
+        formData.append('nome', 'teste');
+    }
     return(
         <section id='sForm'>
             <h1>Divulgar</h1>
-            <form action='https://divulga-back-5760v91e7-vitorvitima.vercel.app/register' autoComplete={'off'} id='form-api' method='post' enctype='multipart/form-data'>
+            <form  action='https://divulga-back-5760v91e7-vitorvitima.vercel.app/register' autoComplete={'off'} id='form-api' method='post' enctype='multipart/form-data'>
                 <div id='nome'>
                    <label htmlFor='nomeEs' >Nome da empresa</label>
                    <input id='nomeEs' type={'text'} maxLength='20' minLength='1' required/>
