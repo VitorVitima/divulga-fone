@@ -1,7 +1,7 @@
 import './parceiros.css'
 function Parceiros(props){
     
-    const urlServer = `https://divulga-back.vercel.app/imgEs/`
+    const urlServer = `https://divulga-back-n3y6pw7sc-vitorvitima.vercel.app/imgEs/`
     function parSelecionado(e){
         function selecionado (){
             if(e.nome == props.par){

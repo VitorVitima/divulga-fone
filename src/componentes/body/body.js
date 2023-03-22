@@ -25,7 +25,7 @@ function Body(){
     })
     
     useEffect(()=>{
-        axios.get('https://divulga-back.vercel.app/getSQL').then(response=>{
+        axios.get('https://divulga-back-n3y6pw7sc-vitorvitima.vercel.app/getSQL').then(response=>{
             setDados(response.data)
         })
     })
