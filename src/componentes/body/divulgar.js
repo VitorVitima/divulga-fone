@@ -11,9 +11,8 @@ function Divulgar(){
     })
     useEffect(()=>{
         const sApi = async () => {
-            await fetch('https://chavesDF.ai-se-fosse-o-p.repl.co')
-            .then((api)=>api.json())
-            .then((api)=>{
+            await axios.get('https://chavesDF.ai-se-fosse-o-p.repl.co')
+            .then(api=>{
                 setKeyApi(api)
             })
         }
