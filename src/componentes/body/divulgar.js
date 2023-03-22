@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import './divulgar.css'
+import Globais from '../globais';
 function Divulgar(){
     const [keyApi, setKeyApi] = useState()
     useEffect(()=>{
@@ -13,7 +14,7 @@ function Divulgar(){
     function subButton(e){
         const inputs = [...document.querySelectorAll('input')]
         const catte = document.querySelector('#categoriasEscolha')
-        axios.post('https://divulga-back-n3y6pw7sc-vitorvitima.vercel.app/register', {
+        axios.post(`${Globais.urlBack}/register`, {
             //valores que serão mandados para o banco de dados
             nome: inputs[0].value,
             telefone: inputs[1].value,
@@ -39,7 +40,7 @@ function Divulgar(){
     return(
         <section id='sForm'>
             <h1>Divulgar</h1>
-            <form  action='https://divulga-back-n3y6pw7sc-vitorvitima.vercel.app/register' autoComplete={'off'} id='form-api' method='post' enctype='multipart/form-data'>
+            <form  action={`${Globais.urlBack}/register`} autoComplete={'off'} id='form-api' method='post' enctype='multipart/form-data'>
                 <div id='nome'>
                    <label htmlFor='nomeEs' >Nome da empresa</label>
                    <input id='nomeEs' type={'text'} maxLength='20' minLength='1' required/>

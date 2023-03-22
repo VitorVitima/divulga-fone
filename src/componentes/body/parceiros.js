@@ -1,7 +1,7 @@
+import Globais from '../globais'
 import './parceiros.css'
 function Parceiros(props){
-    
-    const urlServer = `https://divulga-back-n3y6pw7sc-vitorvitima.vercel.app/imgEs/`
+    const urlServer = `${Globais.urlBack}/imgEs/`
     function parSelecionado(e){
         function selecionado (){
             if(e.nome == props.par){

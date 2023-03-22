@@ -4,7 +4,7 @@ import Global from '../globais'
 import Divulgar from './divulgar.js'
 import Parceiros from './parceiros';
 import Contato from './contato';
-
+import Globais from '../globais';
 
 import './body.css'
 function Body(){
@@ -23,9 +23,8 @@ function Body(){
 
         setPar(Global.par)
     })
-    
     useEffect(()=>{
-        axios.get('https://divulga-back-n3y6pw7sc-vitorvitima.vercel.app/getSQL').then(response=>{
+        axios.get(`${Globais.urlBack}/getSQL`).then(response=>{
             setDados(response.data)
         })
     })
