@@ -3,17 +3,40 @@ import axios from 'axios';
 import './divulgar.css'
 import Globais from '../globais';
 function Divulgar(){
+    
     const [keyApi, setKeyApi] = useState()
-    useEffect(()=>{
-        fetch('https://chavesDF.ai-se-fosse-o-p.repl.co')
-        .then((api)=>api.json())
-        .then((api)=>{
-            setKeyApi(api)
-        })
+    const [image, setImage] = useState('')
+    const api = axios.create({
+        baseURL: Globais.urlBack
     })
-    function subButton(e){
+    useEffect(()=>{
+        const sApi = async () => {
+            await fetch('https://chavesDF.ai-se-fosse-o-p.repl.co')
+            .then((api)=>api.json())
+            .then((api)=>{
+                setKeyApi(api)
+            })
+        }
+        sApi()
+    })
+    useEffect(()=>{
+        const imgInput = document.querySelector('#imgEs')
+        setImage(imgInput.files[0])
+    })
+    async function subButton(e){
         const inputs = [...document.querySelectorAll('input')]
         const catte = document.querySelector('#categoriasEscolha')
+
+        const formData = new FormData()
+        formData.append('image', image)
+        const headers = {
+            'headers':{
+              'Content-Type': 'application/json',
+              'Content-Type': 'multipart/form-data; boundary=<calculated when request is sent>'
+            }
+          }
+        await api.post('/uploadImg', formData, headers)
+
         axios.post(`${Globais.urlBack}/register`, {
             //valores que serão mandados para o banco de dados
             nome: inputs[0].value,
@@ -79,7 +102,7 @@ function Divulgar(){
                 </div>
                 <div id='imgDivulgar'>
                     <label htmlFor='imgEs'>Imagem da loja</label>
-                    <input id='imgEs' name='imgEs' type='file' accept="image/png, image/jpeg, image/jpg" required/>
+                    <input id='imgEs' name='image' type='file' accept="image/png, image/jpeg, image/jpg" required/>
                 </div>
                 <div id='key'>
                     <label htmlFor='keyInput'>Chave de Divulgação</label>
