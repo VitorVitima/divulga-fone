@@ -3,6 +3,7 @@ export default class Globais{
     static divulgar = false
     static parceiros = true
     static contato = false
+    //https://divulga-back.vercel.app
     static urlBack = 'https://divulga-back.vercel.app'
 
     static par = 'all'

@@ -13,7 +13,7 @@ function Divulgar(){
         const sApi = async () => {
             await axios.get(`${Globais.urlBack}/keys`)
             .then(api=>{
-                setKeyApi(api)
+                setKeyApi(api.data)
             })
         }
         sApi()
@@ -34,7 +34,7 @@ function Divulgar(){
               'Content-Type': 'multipart/form-data; boundary=<calculated when request is sent>'
             }
           }
-        await api.post('/uploadImg', formData, headers)
+        await api.post('/uploadImg', formData, headers).catch(err=>console.log(err))
 
         axios.post(`${Globais.urlBack}/register`, {
             //valores que serão mandados para o banco de dados
@@ -62,7 +62,7 @@ function Divulgar(){
     return(
         <section id='sForm'>
             <h1>Divulgar</h1>
-            <form  action={`${Globais.urlBack}/register`} autoComplete={'off'} id='form-api' method='post' enctype='multipart/form-data'>
+            <form  action={`${Globais.urlBack}/register`} autoComplete={'off'} id='form-api' method='post'>
                 <div id='nome'>
                    <label htmlFor='nomeEs' >Nome da empresa</label>
                    <input id='nomeEs' type={'text'} maxLength='20' minLength='1' required/>
