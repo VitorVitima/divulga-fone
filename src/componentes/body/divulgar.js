@@ -3,7 +3,6 @@ import axios from 'axios';
 import './divulgar.css'
 function Divulgar(){
     const [keyApi, setKeyApi] = useState()
-    const [img, setImg] = useState()
     useEffect(()=>{
         fetch('https://chavesDF.ai-se-fosse-o-p.repl.co')
         .then((api)=>api.json())
@@ -14,7 +13,7 @@ function Divulgar(){
     function subButton(e){
         const inputs = [...document.querySelectorAll('input')]
         const catte = document.querySelector('#categoriasEscolha')
-        axios.post('https://divulga-back-5760v91e7-vitorvitima.vercel.app/register', {
+        axios.post('https://divulga-back-git-main-vitorvitima.vercel.app/register', {
             //valores que serão mandados para o banco de dados
             nome: inputs[0].value,
             telefone: inputs[1].value,
@@ -22,14 +21,14 @@ function Divulgar(){
             estado: inputs[3].value,
             cep: inputs[4].value,
             categoria: catte.value,
-            imgName: inputs[5]    
+            imgName: inputs[5].files[0].name
         }).then(response=>console.log(response))
         
         console.log('mandou')
     }
     function enviarDados(tag){
         const key = document.querySelector('#keyInput')
-        keyApi?.map((e)=>{
+        keyApi.map((e)=>{
             if(e.chave == key.value){
                 subButton(tag)
             } else{
@@ -37,16 +36,10 @@ function Divulgar(){
             }
         })
     }
-    function subFun(e){
-        const file = img
-        const formData = new FormData();    
-        formData.append('anexo', file);
-        formData.append('nome', 'teste');
-    }
     return(
         <section id='sForm'>
             <h1>Divulgar</h1>
-            <form  action='https://divulga-back-5760v91e7-vitorvitima.vercel.app/register' autoComplete={'off'} id='form-api' method='post' enctype='multipart/form-data'>
+            <form  action='https://divulga-back-git-main-vitorvitima.vercel.app/register' autoComplete={'off'} id='form-api' method='post' enctype='multipart/form-data'>
                 <div id='nome'>
                    <label htmlFor='nomeEs' >Nome da empresa</label>
                    <input id='nomeEs' type={'text'} maxLength='20' minLength='1' required/>
@@ -85,14 +78,14 @@ function Divulgar(){
                 </div>
                 <div id='imgDivulgar'>
                     <label htmlFor='imgEs'>Imagem da loja</label>
-                    <input onChange={(e)=>setImg(e.target.files[0])} id='imgEs' name='file' type='file' accept="image/png, image/jpeg, image/jpg" required/>
+                    <input id='imgEs' name='imgEs' type='file' accept="image/png, image/jpeg, image/jpg" required/>
                 </div>
                 <div id='key'>
                     <label htmlFor='keyInput'>Chave de Divulgação</label>
                     <input id='keyInput' type={'text'}/>
                 </div>
                 <div id='buttonTag'>
-                    <input id='buttonInput' onClick={(e)=>enviarDados(e)} type={'submit'} value='Divulgar'/>
+                    <input id='buttonInput' onClick={(e)=>enviarDados(e)} type={'button'} value='Divulgar'/>
                 </div>
             </form>
         </section>
