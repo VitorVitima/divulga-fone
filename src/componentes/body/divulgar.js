@@ -11,7 +11,7 @@ function Divulgar(){
     })
     useEffect(()=>{
         const sApi = async () => {
-            await axios.get('https://chavesDF.ai-se-fosse-o-p.repl.co')
+            await axios.get(`${Globais.urlBack}/keys`)
             .then(api=>{
                 setKeyApi(api)
             })
