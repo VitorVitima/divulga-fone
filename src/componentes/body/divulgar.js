@@ -51,7 +51,7 @@ function Divulgar(){
     }
     function enviarDados(tag){
         const key = document.querySelector('#keyInput')
-        keyApi.map((e)=>{
+        keyApi?.map((e)=>{
             if(e.chave == key.value){
                 subButton(tag)
             } else{
