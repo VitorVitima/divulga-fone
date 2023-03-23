@@ -34,7 +34,9 @@ function Divulgar(){
               'Content-Type': 'multipart/form-data; boundary=<calculated when request is sent>'
             }
           }
-        await api.post('/uploadImg', formData, headers).catch(err=>console.log(err))
+        await api.post('/uploadImg', formData, headers).catch(error => {
+            console.log(error.message);
+          })
 
         axios.post(`${Globais.urlBack}/register`, {
             //valores que serão mandados para o banco de dados
