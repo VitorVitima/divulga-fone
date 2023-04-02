@@ -44,7 +44,6 @@ function Divulgar(){
             return new Promise(promiseCallback);
           };
           const uploadDados = img => {
-            setLinkImg(img.data.link)
             axios.post(`${Globais.urlBack}/register`, {
                 //valores que serão mandados para o banco de dados
                 nome: inputs[0].value,
@@ -53,7 +52,7 @@ function Divulgar(){
                 estado: inputs[3].value,
                 cep: inputs[4].value,
                 categoria: catte.value,
-                img: linkImg,
+                img: img
             }).then(response=>console.log(response))
           }
           const uploadImage = async () => {
