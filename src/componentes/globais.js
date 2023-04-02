@@ -4,7 +4,7 @@ export default class Globais{
     static parceiros = true
     static contato = false
     //https://divulga-back.vercel.app
-    static urlBack = 'https://divulga-back.vercel.app'
+    static urlBack = 'https://divulga-back.onrender.com'
 
     static par = 'all'
 }
