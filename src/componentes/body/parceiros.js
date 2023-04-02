@@ -1,7 +1,5 @@
-import Globais from '../globais'
 import './parceiros.css'
 function Parceiros(props){
-    const urlServer = `${Globais.urlBack}/imgEs/`
     function parSelecionado(e){
         function selecionado (){
             if(e.nome == props.par){
@@ -9,7 +7,7 @@ function Parceiros(props){
                     <div className='selecionado' key={e.id}>
                         <h2>{props.par}</h2>
                         <div className='imgS'>
-                            <img src={`${urlServer}${e.img}`}/>
+                            <img src={`${e.img.data.link}`}/>
                         </div>
                         <span>Endereço: {e.endereco}</span>
                         <span>Estado: {e.estado}</span>
@@ -31,7 +29,7 @@ function Parceiros(props){
             <>
                 <h2><span>{e.nome}</span></h2>
                 <div className='img'>
-                    <img onClick={()=>clickImg(e)} src={`${urlServer}${e.img}`}></img>
+                    <img onClick={()=>clickImg(e)} src={`${e.img.data.link}`}></img>
                 </div>
                 <span>
                     Endereço: {e.endereco}

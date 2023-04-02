@@ -3,9 +3,10 @@ import axios from 'axios';
 import './divulgar.css'
 import Globais from '../globais';
 function Divulgar(){
-    
+    const CLIENT_ID = 'ba0c9a120594fad'
     const [keyApi, setKeyApi] = useState()
     const [image, setImage] = useState('')
+    const [linkImg, setLinkImg ] = useState()
     const api = axios.create({
         baseURL: Globais.urlBack
     })
@@ -25,30 +26,54 @@ function Divulgar(){
     async function subButton(e){
         const inputs = [...document.querySelectorAll('input')]
         const catte = document.querySelector('#categoriasEscolha')
-
-        const formData = new FormData()
-        formData.append('image', image)
-        const headers = {
-            'headers':{
-              'Content-Type': 'application/json',
-              'Content-Type': 'multipart/form-data; boundary=<calculated when request is sent>'
-            }
-          }
-        await api.post('/uploadImg', formData, headers).catch(error => {
-            console.log(error.message);
-          })
-
-        axios.post(`${Globais.urlBack}/register`, {
-            //valores que serão mandados para o banco de dados
-            nome: inputs[0].value,
-            telefone: inputs[1].value,
-            endereco: inputs[2].value,
-            estado: inputs[3].value,
-            cep: inputs[4].value,
-            categoria: catte.value,
-            imgName: inputs[5].files[0].name
-        }).then(response=>console.log(response))
         
+
+        
+
+        
+          const doUpload = (url, options) => {
+            const promiseCallback = (resolve, reject) => {
+              const getFetchJson = (response) => {
+                if(!response.ok) return reject(response);
+                return response.json().then(resolve);
+              }
+              fetch(url, options)
+                .then(getFetchJson)
+                .catch(reject);
+            };
+            return new Promise(promiseCallback);
+          };
+          const uploadDados = img => {
+            setLinkImg(img.data.link)
+            axios.post(`${Globais.urlBack}/register`, {
+                //valores que serão mandados para o banco de dados
+                nome: inputs[0].value,
+                telefone: inputs[1].value,
+                endereco: inputs[2].value,
+                estado: inputs[3].value,
+                cep: inputs[4].value,
+                categoria: catte.value,
+                img: linkImg,
+            }).then(response=>console.log(response))
+          }
+          const uploadImage = async () => {
+            const data = new FormData();
+            data.append('image', image);
+        
+            await doUpload('https://api.imgur.com/3/image', {
+              method: 'POST',
+              body: data,
+              headers: {
+                'Authorization': `Client-ID ${CLIENT_ID}`,
+              }
+            }).then((e)=>{
+                uploadDados(e)
+            }).catch(console.error)
+
+            
+        }
+        uploadImage()
+        console.log('link: ' + linkImg)
         console.log('mandou')
     }
     function enviarDados(tag){
@@ -64,7 +89,7 @@ function Divulgar(){
     return(
         <section id='sForm'>
             <h1>Divulgar</h1>
-            <form  action={`${Globais.urlBack}/register`} autoComplete={'off'} id='form-api' method='post'>
+            <form  action={`${Globais.urlBack}/register`} autoComplete={'off'} id='form-api' method='post' encType='multipart/form-data'>
                 <div id='nome'>
                    <label htmlFor='nomeEs' >Nome da empresa</label>
                    <input id='nomeEs' type={'text'} maxLength='20' minLength='1' required/>
