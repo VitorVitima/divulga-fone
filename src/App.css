@@ -4,15 +4,17 @@ html {
     overflow-y: visible;
 }
 ::-webkit-scrollbar{
-    width: 7px;
+    width: 4px;
     background-color: var(--white);
+    outline: 0px solid var(--white);
 }
 ::-webkit-scrollbar-thumb{
-    width: 5px;
+    width: 2px;
     background-color: var(--white);
     border-radius: 50px;
-    border: 1px solid var(--white);
+    border: 0px solid var(--white);
 }
-::-webkit-scrollbar-thumb:hover{
-    background-color: var(--black);
+::-webkit-scrollbar:hover{
+    outline: 2px solid var(--black);
+    background-color: black;
 }

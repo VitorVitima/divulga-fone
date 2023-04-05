@@ -79,6 +79,9 @@ function Header(){
                         <span>Hotel</span>
                     </div>
                     <div className='categorias'>
+                        <span>Motel</span>
+                    </div>
+                    <div className='categorias'>
                         <span>Distribuidora</span>
                     </div>
                     <div className='categorias'>
@@ -86,6 +89,15 @@ function Header(){
                     </div>
                     <div className='categorias'>
                         <span>Construção</span>
+                    </div>
+                    <div className='categorias'>
+                        <span>Imoveis</span>
+                    </div>
+                    <div className='categorias'>
+                        <span>Moveis</span>
+                    </div>
+                    <div className='categorias'>
+                        <span>Automobilistico</span>
                     </div>
                 </div>
             </div>

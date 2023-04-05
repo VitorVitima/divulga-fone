@@ -6,10 +6,6 @@ function Divulgar(){
     const CLIENT_ID = 'ba0c9a120594fad'
     const [keyApi, setKeyApi] = useState()
     const [image, setImage] = useState('')
-    const [linkImg, setLinkImg ] = useState()
-    const api = axios.create({
-        baseURL: Globais.urlBack
-    })
     useEffect(()=>{
         const sApi = async () => {
             await axios.get(`${Globais.urlBack}/keys`)
@@ -26,11 +22,6 @@ function Divulgar(){
     async function subButton(e){
         const inputs = [...document.querySelectorAll('input')]
         const catte = document.querySelector('#categoriasEscolha')
-        
-
-        
-
-        
           const doUpload = (url, options) => {
             const promiseCallback = (resolve, reject) => {
               const getFetchJson = (response) => {
@@ -58,7 +49,6 @@ function Divulgar(){
           const uploadImage = async () => {
             const data = new FormData();
             data.append('image', image);
-        
             await doUpload('https://api.imgur.com/3/image', {
               method: 'POST',
               body: data,
@@ -68,11 +58,10 @@ function Divulgar(){
             }).then((e)=>{
                 uploadDados(e)
             }).catch(console.error)
-
-            
         }
         uploadImage()
-        console.log('link: ' + linkImg)
+        Globais.parceiros = true
+        Globais.divulgar = false
         console.log('mandou')
     }
     function enviarDados(tag){
@@ -84,6 +73,69 @@ function Divulgar(){
                 console.log('Chave de Divulgação inválida...')
             }
         })
+    }
+    function erroDados () {
+        const inputs = [...document.querySelectorAll('input')]
+        const time = 1000
+        function erroInput(e){
+            e.className = 'erroInput'
+            setTimeout(()=>{
+                e.className = ''
+            },time)
+        }
+        function imgErro(){
+            const div = document.querySelector('#imgInfo')
+            div.classList = 'divFocus'
+            setTimeout(()=>{
+                div.classList = ''
+            },time)
+        }
+        let validador = 0
+        if(inputs[0].value.length < 100){
+            validador++
+        } else {
+            erroInput(inputs[0])
+        }
+        if(inputs[1].value.length <= 11 && inputs[1].value.length >= 8){
+            validador++
+        } else{
+            erroInput(inputs[1])
+        }
+        if(inputs[2].value.length <= 250){
+            validador++
+        } else{
+            erroInput(inputs[2])
+        }
+        if(inputs[3].value.length <= 50){
+            validador++
+        } else{
+            erroInput(inputs[3])
+        }
+        if(inputs[4].value.length == 8){
+            validador++
+        } else{
+            erroInput(inputs[4])
+        }
+        if(inputs[5].files.length != 0){
+            validador++
+        } else{
+            imgErro()
+        }
+        if(inputs[6].value.length != 0){
+            validador++
+        } else{
+            erroInput(inputs[6])
+        }
+        if(validador == 7){
+            enviarDados()
+        }
+    }
+    function buttonEvent(){
+        erroDados()
+    }
+    function imgFun(e){
+        const span = document.querySelector('#nameImgSpan')
+        span.innerHTML = `${e.files[0].name}`
     }
     return(
         <section id='sForm'>
@@ -116,7 +168,9 @@ function Divulgar(){
                         <option value='Comercio'>Comercio</option>
                         <option value='Mercado'>Mercado</option>
                         <option value='Hotel'>Hotel</option>
+                        <option value='Motel'>Motel</option>
                         <option value='Farmácia'>Farmácia</option>
+                        <option value='Distribuidora'>Distribuidora</option>
                         <option value='Automobilistico'>Automobilistico</option>
                         <option value='Roupas'>Roupas</option>
                         <option value='Construção'>Construção</option>
@@ -127,14 +181,20 @@ function Divulgar(){
                 </div>
                 <div id='imgDivulgar'>
                     <label htmlFor='imgEs'>Imagem da loja</label>
-                    <input id='imgEs' name='image' type='file' accept="image/png, image/jpeg, image/jpg" required/>
+                    <div id='imgInfo'>
+                        <label htmlFor='imgEs'>
+                            <span>Escolher</span>
+                            <span id='nameImgSpan'>Imagem.png/jpg</span>
+                        </label>
+                        <input onChange={(e)=>imgFun(e.target)} id='imgEs' name='image' type='file' accept="image/png, image/jpeg, image/jpg" required/>
+                    </div>
                 </div>
                 <div id='key'>
                     <label htmlFor='keyInput'>Chave de Divulgação</label>
                     <input id='keyInput' type={'text'}/>
                 </div>
                 <div id='buttonTag'>
-                    <input id='buttonInput' onClick={(e)=>enviarDados(e)} type={'button'} value='Divulgar'/>
+                    <input id='buttonInput' onClick={(e)=>buttonEvent(e)} type={'button'} value='Divulgar'/>
                 </div>
             </form>
         </section>

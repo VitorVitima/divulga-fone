@@ -38,9 +38,51 @@ form > div > input{
     border-radius: 2px;
     transition-duration: 0.3s;
 }
+form > div > input.erroInput{
+    border-color: #ff0000d0;
+}
 form > div > input:focus{
     border-color: black;
     transition-duration: 0.3s;
+}
+form > div > div{
+    width: 200px;
+
+    font-size: 14px;
+
+    display: flex;
+    justify-content: center;
+
+    border: none;
+    border-top: 0px;
+    border-left: 0px;
+    border-right: 0px;
+    border-bottom-width: 2px;
+    border-color: #00000052;
+    border-style: solid;
+    border-radius: 2px;
+    transition-duration: 0.3s;
+}
+form > div > div.divFocus{
+    border-color: #ff0000d0;
+}
+form > div > div > label{
+    width: 100%;
+    padding: 0px 10px;
+
+    display: flex;
+    justify-content: space-between;
+}
+form > div > div > label > span:nth-child(1){
+    color: #000000;
+    user-select: none;
+}
+form > div > div > label > span:nth-child(2){
+    color: #000000a1;
+    user-select: none;
+}
+form > div > div > input#imgEs{
+    display: none;
 }
 form > div#categoria > select{
     background-color: black;
