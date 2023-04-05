@@ -91,7 +91,7 @@ function Divulgar(){
             },time)
         }
         let validador = 0
-        if(inputs[0].value.length < 100){
+        if(inputs[0].value.length < 100 && inputs[0].value.length != 0){
             validador++
         } else {
             erroInput(inputs[0])
@@ -101,12 +101,12 @@ function Divulgar(){
         } else{
             erroInput(inputs[1])
         }
-        if(inputs[2].value.length <= 250){
+        if(inputs[2].value.length <= 250 && inputs[2].value.length != 0){
             validador++
         } else{
             erroInput(inputs[2])
         }
-        if(inputs[3].value.length <= 50){
+        if(inputs[3].value.length <= 50 && inputs[3].value.length != 0){
             validador++
         } else{
             erroInput(inputs[3])
