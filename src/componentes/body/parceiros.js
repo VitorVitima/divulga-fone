@@ -21,7 +21,6 @@ function Parceiros(props){
             <>
                 {selecionado()}    
             </>
-            
         )
     }
     function dadosBasicos(e){

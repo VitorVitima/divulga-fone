@@ -144,11 +144,11 @@ header > nav a:hover{
     header  div#logo > img{
         margin-top: 7px;
     }
-    header > nav > a{
+    header > nav > a#linkRotas{
         display: none;
     }
 }
-@media (max-width: 700px){
+@media (max-width: 735px){
     header{
         background-color: var(--white);
         width: 100vw;
@@ -168,7 +168,7 @@ header > nav a:hover{
 
       font-size: 15px;
     }
-    header > nav > a{
+    header > nav > a#linkRotas{
         display: none;
     }
     header  div#logo{

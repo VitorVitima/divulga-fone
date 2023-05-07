@@ -1,70 +1,53 @@
+import { Link } from 'react-router-dom'
 import { useState } from 'react'
 import Globais from '../globais'
 import './header.css'
-function Header(){
-    const [atu, setAtu] = useState(false)
+function Header() {
     const [getCat, setCat] = useState(false)
     const categorias = [...document.querySelectorAll('.categorias')]
-    categorias.map((e)=>{
-        e.addEventListener('click', ()=>{
+    categorias.map((e) => {
+        e.addEventListener('click', () => {
             Globais.cat = e.childNodes[0].innerHTML
             Globais.par = 'all'
         })
     })
-    function menuClick(e){
-        if(e.target.className == 'close'){
+    function menuClick(e) {
+        if (e.target.className == 'close') {
             setCat(true)
             e.target.className = 'open'
-        } else if(e.target.className == 'open'){
+        } else if (e.target.className == 'open') {
             setCat(false)
             e.target.className = 'close'
         }
     }
-    function cat(){
-        if(getCat){
+    function cat() {
+        if (getCat) {
             return 'openCat'
-        } else{
+        } else {
             return 'closeCat'
         }
     }
-    function closeMenuCat(e){
+    function closeMenuCat(e) {
         const menu = document.querySelector('#menu')
-        if(getCat){
+        if (getCat) {
             setCat(false)
             e.target.className = 'closeCat'
             menu.className = 'close'
         }
     }
-    function divulgarFun(e){
-        setAtu(e.target.innerHTML)
-        Globais.divulgar = true
-        Globais.parceiros = false
-        Globais.contato = false
-    }
-    function homeFun(e){
-        Globais.divulgar = false
-        Globais.parceiros = true
+    function linkFun(e) {
+        Globais.titu = e
         Globais.par = 'all'
         Globais.cat = 'todos'
-        Globais.contato = false
     }
-    function contatoFun(e){
-        setAtu(e.target.innerHTML)
-        Globais.divulgar = false
-        Globais.parceiros = false
-        Globais.contato = true
-    }
-    function clickLogo(){
-        homeFun()
-    }
-    return(
+    return (
         <header>
-            <div id='menu' className='close' onClick={(e)=>menuClick(e)}>
+            <div id='menu' className='close' onClick={(e) => menuClick(e)}>
                 <div></div>
                 <div></div>
                 <div></div>
             </div>
-            <div id='categorias' onClick={(e)=>closeMenuCat(e)} className={cat()}>
+            <div id='categorias' onClick={(e) => closeMenuCat(e)} className={cat()}>
                 <div id='cat'>
                     <div className='categorias'>
                         <span>Todos</span>
@@ -101,19 +84,21 @@ function Header(){
                     </div>
                 </div>
             </div>
-                <div id='logo' onClick={()=>clickLogo()}>
+            <Link to='/' onClick={() => linkFun('Parceiros')}>
+                <div id='logo'>
                     <img
                         src='./logo/logoBranca/logo.png'
                     >
                     </img>
                     <span>ivulga Fone</span>
                 </div>
+            </Link>
             <nav>
 
-                <div onClick={()=>homeFun()}><span>Home</span></div>
-                <div onClick={(e)=>divulgarFun(e)}><span>Divulgar</span></div>
-                <div onClick={(e)=>contatoFun(e)}><span>Contato</span></div>
-                <a target={'_blank'} href='https://www.google.com/maps/dir///@-23.4093624,-46.757523,15z'>Ver Rotas</a>
+                <Link to='/' onClick={() => linkFun('Parceiros')}>Home</Link>
+                <Link to='divulgar' onClick={() => linkFun('Divulgar')}>Divulgar</Link>
+                <Link to='contato' onClick={() => linkFun('Contato')}>Contato</Link>
+                <a id='linkRotas' target={'_blank'} href='https://www.google.com/maps/dir///@-23.4093624,-46.757523,15z'>Ver Rotas</a>
             </nav>
         </header>
     )
