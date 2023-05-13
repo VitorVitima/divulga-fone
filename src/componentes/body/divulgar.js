@@ -60,9 +60,6 @@ function Divulgar(){
             }).catch(console.error)
         }
         uploadImage()
-        Globais.parceiros = true
-        Globais.divulgar = false
-        console.log('mandou')
     }
     function enviarDados(tag){
         const key = document.querySelector('#keyInput')
