@@ -7,17 +7,17 @@ function Header() {
     const categorias = [...document.querySelectorAll('.categorias')]
     categorias.map((e) => {
         e.addEventListener('click', () => {
-            Globais.cat = e.childNodes[0].innerHTML
+            Globais.cat = e.id
             Globais.par = 'all'
         })
     })
     function menuClick(e) {
-        if (e.target.className == 'close') {
+        if (e.className == 'close') {
             setCat(true)
-            e.target.className = 'open'
-        } else if (e.target.className == 'open') {
+            e.className = 'open'
+        } else if (e.className == 'open') {
             setCat(false)
-            e.target.className = 'close'
+            e.className = 'close'
         }
     }
     function cat() {
@@ -40,47 +40,50 @@ function Header() {
         Globais.par = 'all'
         Globais.cat = 'todos'
     }
+    function ClickBarMenu(e){
+        menuClick(e.target.parentNode)
+    }
     return (
         <header>
-            <div id='menu' className='close' onClick={(e) => menuClick(e)}>
-                <div></div>
-                <div></div>
-                <div></div>
+            <div id='menu' className='close' onClick={(e) => menuClick(e.target)}>
+                <div onClick={(e)=>ClickBarMenu(e)}></div>
+                <div onClick={(e)=>ClickBarMenu(e)}></div>
+                <div onClick={(e)=>ClickBarMenu(e)}></div>
             </div>
             <div id='categorias' onClick={(e) => closeMenuCat(e)} className={cat()}>
                 <div id='cat'>
                     <div className='categorias'>
-                        <span>Todos</span>
+                        <spaLink to='/'>Todos</spaLink>
                     </div>
-                    <div className='categorias'>
-                        <span>Comercio</span>
+                    <div className='categorias' id='Comercio'>
+                        <Link to='/Comercio'>Comercio</Link>
                     </div>
-                    <div className='categorias'>
-                        <span>Mercado</span>
+                    <div className='categorias' id='Mercado'>
+                        <Link to='/Mercado'>Mercado</Link>
                     </div>
-                    <div className='categorias'>
-                        <span>Hotel</span>
+                    <div className='categorias' id='Hotel'>
+                        <Link to='/Hotel'>Hotel</Link>
                     </div>
-                    <div className='categorias'>
-                        <span>Motel</span>
+                    <div className='categorias' id='Motel'>
+                        <Link to='/Motel'>Motel</Link>
                     </div>
-                    <div className='categorias'>
-                        <span>Distribuidora</span>
+                    <div className='categorias' id='Distribuidora'>
+                        <Link to='/Distribuidora'>Distribuidora</Link>
                     </div>
-                    <div className='categorias'>
-                        <span>Farmacia</span>
+                    <div className='categorias' id='Farmacia'>
+                        <Link to='/Farmacia'>Farmacia</Link>
                     </div>
-                    <div className='categorias'>
-                        <span>Construção</span>
+                    <div className='categorias' id='Construcao'>
+                        <Link to='/Construcao'>Construção</Link>
                     </div>
-                    <div className='categorias'>
-                        <span>Imoveis</span>
+                    <div className='categorias' id='Imoveis'>
+                        <Link to='/Imoveis'>Imoveis</Link>
                     </div>
-                    <div className='categorias'>
-                        <span>Moveis</span>
+                    <div className='categorias' id='Moveis'>
+                        <Link to='/Moveis'>Moveis</Link>
                     </div>
-                    <div className='categorias'>
-                        <span>Automobilistico</span>
+                    <div className='categorias' id='Automobilistico'>
+                        <Link to='/Automobilistico'>Automobilistico</Link>
                     </div>
                 </div>
             </div>
@@ -94,7 +97,6 @@ function Header() {
                 </div>
             </Link>
             <nav>
-
                 <Link to='/' onClick={() => linkFun('Parceiros')}>Home</Link>
                 <Link to='divulgar' onClick={() => linkFun('Divulgar')}>Divulgar</Link>
                 <Link to='contato' onClick={() => linkFun('Contato')}>Contato</Link>

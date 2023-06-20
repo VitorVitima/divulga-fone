@@ -166,7 +166,7 @@ function Divulgar(){
                         <option value='Mercado'>Mercado</option>
                         <option value='Hotel'>Hotel</option>
                         <option value='Motel'>Motel</option>
-                        <option value='Farmácia'>Farmácia</option>
+                        <option value='Farmacia'>Farmácia</option>
                         <option value='Distribuidora'>Distribuidora</option>
                         <option value='Automobilistico'>Automobilistico</option>
                         <option value='Roupas'>Roupas</option>

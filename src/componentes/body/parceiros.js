@@ -64,6 +64,7 @@ function Parceiros(props){
     }
     function funCat(e){
         if(pesquisa(e)){
+            
             return(
                 <div key={e.nome}>
                     {dadosBasicos(e)}
@@ -76,7 +77,7 @@ function Parceiros(props){
                 return all(e)
             } else if(props.par != 'all'){
                 return parSelecionado(e)
-            } else {
+            } else if(props.par == 'all' && props.cat.toUpperCase() != 'TODOS'){
                 return funCat(e)
             }
     })

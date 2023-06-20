@@ -78,7 +78,10 @@ header > div#categorias > div#cat > div{
     cursor: pointer;
     transition-duration: 0.3s;
 }
-header > div#categorias > div#cat > div:hover {
+header .categorias{
+    margin-bottom: 5px;
+}
+header > div#categorias > div#cat > div:hover a {
     color: white;
     transition-duration: 0.3s;
 }
