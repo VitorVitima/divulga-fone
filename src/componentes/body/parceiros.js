@@ -1,34 +1,14 @@
+import { Link } from 'react-router-dom'
 import './parceiros.css'
 function Parceiros(props){
-    function parSelecionado(e){
-        function selecionado (){
-            if(e.nome == props.par){
-                return(
-                    <div className='selecionado' key={e.id}>
-                        <h2>{props.par}</h2>
-                        <div className='imgS'>
-                            <img src={`${e.img.data.link}`}/>
-                        </div>
-                        <span>Endereço: {e.endereco}</span>
-                        <span>Estado: {e.estado}</span>
-                        <span id='cep'>Cep: {e.cep}</span>
-                        <span>Telefone: {e.telefone}</span>
-                    </div>
-                )
-            }
-        }
-        return (
-            <>
-                {selecionado()}    
-            </>
-        )
-    }
     function dadosBasicos(e){
         return(
             <>
                 <h2><span>{e.nome}</span></h2>
                 <div className='img'>
-                    <img onClick={()=>clickImg(e)} src={`${e.img.data.link}`}></img>
+                    <Link to={`/focus/${e.img.data.id}`}>
+                        <img src={`${e.img.data.link}`}></img>
+                    </Link>
                 </div>
                 <span>
                     Endereço: {e.endereco}
@@ -36,54 +16,27 @@ function Parceiros(props){
             </>
         )
     }
-    function clickImg(e){
-        props.global.par = e.nome
-    }
-    function all(e){
+    function todosOsParceiros(e){
         return(
-            <div key={e.id}>
+            <div key={e.img.data.id}>
                 {dadosBasicos(e)}
             </div>
         )
     }
-    function contemPesquisa(es, cat){
-        const num = es.indexOf(cat)
-        if(num >= 0)
-            return true
-        else
-            return false
-    }
-    function pesquisa(e){
-        if(contemPesquisa(e.categoria.toUpperCase(), props.cat.toUpperCase())){
-            return true
-        } else if(contemPesquisa(e.estado.toUpperCase(), props.cat.toUpperCase())){
-            return true
-        } else if(contemPesquisa(e.nome.toUpperCase(), props.cat.toUpperCase())){
-            return true
-        }
-    }
-    function funCat(e){
-        if(pesquisa(e)){
-            
-            return(
-                <div key={e.nome}>
-                    {dadosBasicos(e)}
-                </div>
-            )
-        }
-    }
-    const retorno = props.api.map((e)=>{
-            if(props.par == 'all' &&  props.cat.toUpperCase() == 'TODOS'){
-                return all(e)
-            } else if(props.par != 'all'){
-                return parSelecionado(e)
-            } else if(props.par == 'all' && props.cat.toUpperCase() != 'TODOS'){
-                return funCat(e)
-            }
+    const retorno = props.api.map(e=>{
+        return todosOsParceiros(e)
     })
+    const semRetorno = () => {
+        return (
+            <>
+                <h1>Não temos parceiros dessa categoria {':('}</h1>
+            </>
+        )
+    }
+    const retorno2 = props.api.length > 0 ? retorno:semRetorno()
     return(
         <section id='par'>
-            {retorno}
+            {retorno2}
         </section>
     )
 }

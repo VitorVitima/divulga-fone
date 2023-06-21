@@ -81,6 +81,9 @@ header > div#categorias > div#cat > div{
 header .categorias{
     margin-bottom: 5px;
 }
+header > div#categorias > div#cat > div a{
+    color: black;
+}
 header > div#categorias > div#cat > div:hover a {
     color: white;
     transition-duration: 0.3s;

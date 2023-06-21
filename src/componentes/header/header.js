@@ -53,7 +53,7 @@ function Header() {
             <div id='categorias' onClick={(e) => closeMenuCat(e)} className={cat()}>
                 <div id='cat'>
                     <div className='categorias'>
-                        <spaLink to='/'>Todos</spaLink>
+                        <Link to='/'>Todos</Link>
                     </div>
                     <div className='categorias' id='Comercio'>
                         <Link to='/Comercio'>Comercio</Link>

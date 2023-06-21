@@ -30,7 +30,7 @@ section#par > div > div.img{
     min-height: 90px;
     display: flex;
 }
-section#par > div > div.img > img{
+section#par > div > div.img  img{
     width: 90%;
     max-height: 200px;
     min-width: 170px;
@@ -41,7 +41,7 @@ section#par > div > div.img > img{
     cursor: pointer;
     transition-duration: 0.3s;
 }
-section#par > div > div.img > img:hover{
+section#par > div  div.img  img:hover{
     width: 99%;
     transition-duration: 0.3s;
 }

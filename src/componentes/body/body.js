@@ -6,29 +6,22 @@ import Divulgar from './divulgar.js'
 import Parceiros from './parceiros';
 import Contato from './contato';
 import Globais from '../globais';
-
-import CatOuNotFound from './catOuNotFound';
-
+import ParceiroEspecifico from './parceiroEspecifico';
 import './body.css'
 function Body() {
     const [Dados, setDados] = useState([])
-    const [par, setPar] = useState(Global.par)
-    const [cat, setCat] = useState(Global.cat)
     const [titu, setTitu] = useState(Globais.titu)
+
     const apiReturn = async (e) =>{
         const routerApi = `${window.location.pathname}`
-        console.log(routerApi)
         await axios.get(`${Globais.urlBack}${routerApi}`).then(response => {
             setDados(response.data)
         })
     }
     useEffect(() => {
-        setCat(Global.cat)
         setTitu(Globais.titu)
-        setPar(Global.par)
 
-        apiReturn(cat)
-        
+        apiReturn()
     })
     function pesFun(e) {
         if (e.target.value == '') {
@@ -49,7 +42,7 @@ function Body() {
                             </svg>
                         </div>
                     </label>
-                    <input autoComplete='off' id='pes' placeholder='Pesquisa' name='pes' onChange={(e) => pesFun(e)} type={'text'} />
+                    <input autoComplete='off' id='pes' placeholder='Pesquisa' name='pes' onChange={(e) => pesFun(e)} type={'search'} />
                 </div>
             )
         }
@@ -63,13 +56,12 @@ function Body() {
             <Routes>
                 <Route path='*' element={<Parceiros
                     api={Dados}
-                    par={par}
-                    cat={cat}
-                    global={Global}
                 />}></Route>
-
                 <Route path='divulgar' element={<Divulgar />}></Route>
                 <Route path='contato' element={<Contato />}></Route>
+                <Route path='/focus/*' element={<ParceiroEspecifico
+                    api={Dados[0]}
+                />}></Route>
             </Routes>
         </main>
     )

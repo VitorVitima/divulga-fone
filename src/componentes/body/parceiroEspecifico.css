@@ -1,0 +1,19 @@
+div.parceiroEspecifico{
+    display: flex;
+    flex-direction: column;
+}
+div.parceiroEspecifico h2{
+    text-align: center;
+}
+div.parceiroEspecifico div.imgS{
+    display: block;
+    margin: auto;
+    margin-bottom: 15px;
+}
+div.parceiroEspecifico span{
+    margin-bottom: 7px;
+}
+div.parceiroEspecifico span span{
+    font-weight: bold;
+    margin-right: 5px;
+}
