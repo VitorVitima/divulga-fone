@@ -27,7 +27,6 @@ function Body() {
         if (e.target.value == '') {
             Global.cat = 'Todos'
         } else {
-            Globais.par = 'all'
             Global.cat = e.target.value
         }
     }

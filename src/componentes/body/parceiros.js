@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import './parceiros.css'
+import Globais from '../globais'
 function Parceiros(props){
     function dadosBasicos(e){
         return(
@@ -24,7 +25,9 @@ function Parceiros(props){
         )
     }
     const retorno = props.api.map(e=>{
-        return todosOsParceiros(e)
+        if(Globais.cat == 'Todos' || e.categoria.toUpperCase().includes(Globais.cat.toUpperCase())){
+            return todosOsParceiros(e)
+        }
     })
     const semRetorno = () => {
         return (

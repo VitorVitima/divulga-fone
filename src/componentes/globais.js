@@ -4,6 +4,4 @@ export default class Globais{
     //https://divulga-back.vercel.app
     //https://divulga-back2.onrender.com
     static urlBack = 'https://chavesdf.ai-se-fosse-o-p.repl.co'
-
-    static par = 'all'
 }
