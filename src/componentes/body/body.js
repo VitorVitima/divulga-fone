@@ -14,11 +14,11 @@ function Body() {
 
     const apiReturn = async (e) =>{
         const routerApi = `${window.location.pathname}`
-        if(routerApi != '/contato' && routerApi != '/divulgar'){
+        
             await axios.get(`${Globais.urlBack}${routerApi}`).then(response => {
                 setDados(response.data)
             })
-        }
+        
     }
     useEffect(() => {
         setTitu(Globais.titu)
