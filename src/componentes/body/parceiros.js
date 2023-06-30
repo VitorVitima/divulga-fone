@@ -1,6 +1,8 @@
 import { Link } from 'react-router-dom'
 import './parceiros.css'
 import Globais from '../globais'
+import Loading from './loading'
+import NotFound from './notFound'
 function Parceiros(props){
     function dadosBasicos(e){
         return(
@@ -25,21 +27,24 @@ function Parceiros(props){
         )
     }
     const retorno = props.api.map(e=>{
-        if(Globais.cat == 'TODOS' || e.categoria.toUpperCase().includes(Globais.cat.toUpperCase())){
+        if(
+            Globais.cat == 'TODOS' || 
+            e.categoria.toUpperCase().includes(Globais.cat.toUpperCase()) ||
+            e.nome.toUpperCase().includes(Globais.cat.toUpperCase())
+        ){
             return todosOsParceiros(e)
         }
     })
-    const semRetorno = () => {
-        return (
-            <>
-                <h1>Não temos parceiros dessa categoria {':('}</h1>
-            </>
-        )
+    const retorno2 = () =>{
+        if(props.api.length > 0 && (props.api.length != 1 || window.location.pathname != '/')){
+            return retorno
+        } else if(props.api.length == 1 || props.api.length == 0){
+            return <Loading></Loading>
+        }
     }
-    const retorno2 = props.api.length > 0 ? retorno:semRetorno()
     return(
         <section id='par'>
-            {retorno2}
+            {retorno2()}
         </section>
     )
 }

@@ -1,7 +1,8 @@
+import Loading from "./loading";
 import "./parceiroEspecifico.css";
 function ParceiroEspecifico(props) {
   const apiAwait = () => {
-    if (props.api.length > 0) {
+    if (props.api.length > 0 && props.api[0].img.data.id == window.location.pathname.split('/')[2]) {
       return (
         <>
           <h2>{props.api[0].nome}</h2>
@@ -26,6 +27,8 @@ function ParceiroEspecifico(props) {
           </span>
         </>
       );
+    } else {
+      return <Loading></Loading>
     }
   };
   return <div className="parceiroEspecifico">
