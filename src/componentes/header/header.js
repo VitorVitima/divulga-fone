@@ -86,6 +86,12 @@ function Header() {
                     <div className='categorias' id='Automobilistico'>
                         <Link to='/Automobilistico'>Automobilistico</Link>
                     </div>
+                    <div className='categorias' id='Roupas'>
+                        <Link to='/Roupas'>Roupas</Link>
+                    </div>
+                    <div className='categorias' id='Transporte'>
+                        <Link to='/Transporte'>Transporte</Link>
+                    </div>
                 </div>
             </div>
             <Link to='/' onClick={() => linkFun('Parceiros')}>

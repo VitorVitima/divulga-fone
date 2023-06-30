@@ -44,7 +44,10 @@ function Divulgar(){
                 cep: inputs[4].value,
                 categoria: catte.value,
                 img: img
-            }).then(response=>console.log(response))
+            }).then(response=>{
+                console.log(response)
+                window.location.pathname = `/focus/${img.data.id}`
+            })
           }
           const uploadImage = async () => {
             const data = new FormData();
@@ -88,7 +91,7 @@ function Divulgar(){
             },time)
         }
         let validador = 0
-        if(inputs[0].value.length < 100 && inputs[0].value.length != 0){
+        if(inputs[0].value.length <= 20 && inputs[0].value.length != 0){
             validador++
         } else {
             erroInput(inputs[0])
@@ -140,24 +143,24 @@ function Divulgar(){
             <form  action={`${Globais.urlBack}/register`} autoComplete={'off'} id='form-api' method='post' encType='multipart/form-data'>
                 <div id='nome'>
                    <label htmlFor='nomeEs' >Nome da empresa</label>
-                   <input id='nomeEs' type={'text'} maxLength='20' minLength='1' required/>
+                   <input id='nomeEs' type={'text'} placeholder='Maximo de 20 letras' maxLength='20' minLength='1' required/>
                 </div>
                 <div id='telefone'>
                     <label htmlFor='teleEs'>Telefone de contato</label>
-                    <input id='teleEs' type={'number'} minLength='1' required/>
+                    <input id='teleEs' placeholder='11999999999' type={'number'} min='1' maxLength='11' required/>
                 </div>
                 <div id='endereco'>
                     <label htmlFor='endeEs'>Endereço</label>
-                    <input id='endeEs' type={'text'} required/>
+                    <input id='endeEs' placeholder='xxx xxx' type={'text'} required/>
                 </div>
                 
                 <div id='estado'>
                     <label htmlFor='estaEs'>Estado</label>
-                    <input id='estaEs' type={'text'} required/>
+                    <input id='estaEs' placeholder='XX' type={'text'} required/>
                 </div>
                 <div id='cep'>
                     <label htmlFor='cepEs'>Cep</label>
-                    <input id='cepEs' type={'number'} minLength='8' maxLength={'8'} required/>
+                    <input id='cepEs' placeholder='Minimo de 8 numeros' type={'number'} minLength='8' maxLength={'8'} required/>
                 </div>
                 <div id='categoria'>
                     <label htmlFor='categoriasEscolha'>Categoria</label>
@@ -188,7 +191,7 @@ function Divulgar(){
                 </div>
                 <div id='key'>
                     <label htmlFor='keyInput'>Chave de Divulgação</label>
-                    <input id='keyInput' type={'text'}/>
+                    <input id='keyInput' placeholder='Chave recebida' type={'text'}/>
                 </div>
                 <div id='buttonTag'>
                     <input id='buttonInput' onClick={(e)=>buttonEvent(e)} type={'button'} value='Divulgar'/>
