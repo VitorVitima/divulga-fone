@@ -9,7 +9,7 @@ main{
     width: 100vw;
     max-width: 1400px;
     align-items: center;
-    height: calc(100vh - 80px);
+    min-height: calc(80px - 80px);
     display: flex;
 }
 main > div#h1P{

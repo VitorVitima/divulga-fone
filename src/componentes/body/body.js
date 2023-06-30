@@ -59,7 +59,7 @@ function Body() {
                 <Route path='divulgar' element={<Divulgar />}></Route>
                 <Route path='contato' element={<Contato />}></Route>
                 <Route path='/focus/*' element={<ParceiroEspecifico
-                    api={Dados[0]}
+                    api={Dados}
                 />}></Route>
             </Routes>
         </main>

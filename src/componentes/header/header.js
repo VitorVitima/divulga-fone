@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import { useState } from 'react'
 import Globais from '../globais'
+import logoBranca from '../../images/logoBranca/logo.png'
 import './header.css'
 function Header() {
     const [getCat, setCat] = useState(false)
@@ -90,7 +91,7 @@ function Header() {
             <Link to='/' onClick={() => linkFun('Parceiros')}>
                 <div id='logo'>
                     <img
-                        src='./logo/logoBranca/logo.png'
+                        src={logoBranca}
                     >
                     </img>
                     <span>ivulga Fone</span>
