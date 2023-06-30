@@ -38,7 +38,7 @@ function Header() {
     function linkFun(e) {
         Globais.titu = e
         Globais.par = 'all'
-        Globais.cat = 'todos'
+        Globais.cat = 'TODOS'
     }
     function ClickBarMenu(e){
         menuClick(e.target.parentNode)

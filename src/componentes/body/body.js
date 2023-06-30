@@ -25,7 +25,7 @@ function Body() {
     })
     function pesFun(e) {
         if (e.target.value == '') {
-            Global.cat = 'Todos'
+            Global.cat = 'TODOS'
         } else {
             Global.cat = e.target.value
         }

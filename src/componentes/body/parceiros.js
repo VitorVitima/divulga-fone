@@ -25,7 +25,7 @@ function Parceiros(props){
         )
     }
     const retorno = props.api.map(e=>{
-        if(Globais.cat == 'Todos' || e.categoria.toUpperCase().includes(Globais.cat.toUpperCase())){
+        if(Globais.cat == 'TODOS' || e.categoria.toUpperCase().includes(Globais.cat.toUpperCase())){
             return todosOsParceiros(e)
         }
     })
